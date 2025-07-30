@@ -1,0 +1,52 @@
+package com.example.studentlms.controller;
+
+import com.example.studentlms.model.Student;
+import com.example.studentlms.service.StudentService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/students")
+@CrossOrigin
+public class StudentController {
+
+    private final StudentService service;
+
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
+
+    @GetMapping(value= "/getall")
+    public List<Student> getAll() {
+        return service.getAll();
+    }
+
+    @PostMapping(value= "/add")
+    public Student create(
+            @RequestParam("id") Long id,
+            @RequestParam("name") String name,
+            @RequestParam("email") String email,
+            @RequestParam("course") String course)  {
+    	Student student = new Student();
+        student.setId(id);
+        student.setName(name);
+        student.setEmail(email);
+        student.setCourse(course);
+        
+        return service.add(student);
+    }
+
+    @PutMapping("/update/{id}")
+    public Student update(@PathVariable Long id, @RequestBody Student student) {
+        student.setId(id);
+        return service.update(student);
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
+}

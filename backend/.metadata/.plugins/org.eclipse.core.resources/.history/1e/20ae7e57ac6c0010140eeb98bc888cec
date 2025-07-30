@@ -1,0 +1,14 @@
+package com.example.studentlms.repository;
+
+import com.example.studentlms.model.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+	public Optional<Student> update(Student student) {
+	    if (repository.existsById(student.getId())) {
+	        return Optional.of(repository.save(student));
+	    }
+	    return Optional.empty();
+	}
+
+}
