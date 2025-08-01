@@ -8,4 +8,14 @@ This project is a simple **Student Learning Management System** built using:
 ---
 
 ## 🗂 Project Structure
-
+Java_project/
+├── backend/
+│ └── student-lms/
+│ ├── src/main/java/com/example/studentlms/ # Java source code
+│ ├── src/main/resources/application.properties
+│ ├── pom.xml # Maven build file
+│ └── StudentLmsApplication.java # Spring Boot starter
+├── frontend/
+│ └── my-react-app/
+│ ├── src/ # React app source
+│ ├── index.html, package.json, vite.config.js
